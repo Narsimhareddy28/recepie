@@ -1,5 +1,6 @@
 // Import required modules
 const express = require('express');
+const http = require('http'); 
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes'); // Import category routes
@@ -115,6 +116,9 @@ app.get('/create', async (req, res) => {
 
 // Set up server to listen on port 3000
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = http.createServer(app); // Create server instance
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = server; 
